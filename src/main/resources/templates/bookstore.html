@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>bookstore</title>
+</head>
+<body>
+<div>
+    <div>
+        <table>
+            <tbody>
+            <tr th:each="bookstore,stat:${bookStores}">
+                <td th:text="${bookstore.getStatus()}"></td>
+                <td th:text="${bookstore.getNum()}"></td>
+                <td th:if="${bookstore.getId()} eq 1">
+                    <form action="/input" method="post">
+                        <input type="number" required name="add">
+                        <input type="hidden" name="id" value="1">
+                        <input type="submit" value="入库">
+                    </form>
+                </td>
+                <td th:if="${bookstore.getId()} eq 2">
+                    <form action="/sellOut" method="post">
+                        <input type="number" required name="out">
+                        <input type="hidden" name="id" value="2">
+                        <input type="submit" value="出售">
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
